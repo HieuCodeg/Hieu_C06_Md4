@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head :: head"/>
+    <title>Suspend City</title>
+    <link rel="stylesheet" href="/assets/css/create.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>Suspension of City</h1>
+            </div>
+            <div class="col-sm-7 btn-a">
+                <a class="btn btn-outline-light" href="/provinces"><i class="fa fa-list"></i> List of City
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <form method="post"  th:object="${province}">
+        <div class="form-create">
+            <div class="row col-6">
+                <div class="col-ms-12">
+                    <p>Thành phố</p>
+                    <input class="form-control" type="text" th:field="*{name}" disabled>
+                </div>
+            </div>
+            <div class="row col-6">
+                <div class="col-ms-6">
+                   <p>Bạn có chắc muốn xóa?</p>
+                </div>
+            </div>
+        </div>
+        <div class="btn-action">
+            <div class="btn-suspended">
+                <button class="btn btn-outline-danger" type="text"><i class="fa fa-ban"></i> Suspendes</button>
+            </div>
+            <button class="btn btn-outline-danger" type="button">
+                <a  href="/provinces"><i class="fa fa-close"></i> Thoát
+                </a>
+            </button>
+        </div>
+    </form>
+    <footer>
+        <div id="message-alert">
+            <th:block th:if="${error}">
+                <div class="alert-danger">
+                    <label class="error" th:text="${error}"></label>
+                </div>
+            </th:block>
+
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head :: head"/>
+    <title>Withdraw Money</title>
+    <link rel="stylesheet" href="/assets/css/deposit.css">
+</head>
+<body>
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h2>Withdraw money from the customer's account</h2>
+            </div>
+            <div class="col-sm-7">
+                <a href="/customers" class="btn btn-outline-light"><i class="fa fa-list"></i>Customer list</a>
+            </div>
+        </div>
+    </div>
+    <form method="post"  th:object="${withdraw}">
+    <div class="form-edit">
+        <div class="row col-6">
+            <div class="col-ms-6">
+                <p>Customer ID</p>
+                <input class="form-control" type="text" th:field="${customer.id}" readonly>
+            </div>
+            <div class="col-ms-6">
+                <p>Current balance ($)</p>
+                <input class="form-control" type="number" th:field="${customer.balance}" readonly>
+            </div>
+        </div>
+        <div class="row col-6">
+            <div class="col-ms-6">
+                <p>Full Name</p>
+                <input class="form-control" type="text" th:field="${customer.fullName}" readonly>
+            </div>
+            <div class="col-ms-6">
+                <p>Transaction Amount ($)</p>
+                <input class="form-control" type="number" th:field="*{transactionAmount}">
+                <div>
+                    <label class="error" th:if="${#fields.hasErrors('transactionAmount')}" th:errors="*{transactionAmount}"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="btn-withdraw">
+            <button class="btn btn-outline-warning" type="text"><i class="fa-solid fa-minus"></i> Withdarw</button>
+        </div>
+    </form>
+</div>
+
+</div>
+<footer>
+    <div id="message-alert">
+        <th:block th:if="${error}">
+            <div class="alert-danger">
+                <label class="error" th:text="${error}"></label>
+            </div>
+        </th:block>
+
+    </div>
+</footer>
+</body>
+</html>

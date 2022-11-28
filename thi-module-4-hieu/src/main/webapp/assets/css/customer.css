@@ -1,0 +1,103 @@
+body {
+    margin: 0 auto;
+}
+.container {
+    padding-bottom: 25%;
+}
+.row {
+    background-color: #299be4;
+    color: white;
+}
+.table-title {
+    background: #299be4;
+    color: #fff;
+    padding: 16px 30px;
+    border-radius: 3px 3px 0 0;
+}
+
+.table-title .btn {
+    float: right;
+    min-width: 50px;
+    outline: none !important;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+table th {
+    background-color: #4CAF50 !important;
+    color: #fff;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+table thead th {
+    border: 0 solid #ddd;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+table tbody td {
+    border: 0 solid #ddd;
+}
+
+[title="Deposit"]:hover {
+    background-color: green;
+    color: white;
+}
+
+
+tbody>tr>td{
+    text-align: center;
+}
+
+tbody>tr>td:nth-child(6){
+    text-align: right;
+}
+
+
+tbody>tr>td:nth-child(8) a{
+    border-color: #198754;
+    color: #198754;
+}
+
+tbody>tr>td:nth-child(8) a:hover{
+    background-color: #198754;
+    color: white;
+}
+
+tbody>tr>td:nth-child(9) a{
+    border-color: orange;
+    color: orange;
+}
+
+tbody>tr>td:nth-child(9) a:hover{
+    background-color: orange;
+    color: white;
+}
+
+tbody>tr>td:nth-child(10) a{
+    border-color: rgb(69, 69, 249);
+    color:  rgb(61, 61, 253);
+}
+
+tbody>tr>td:nth-child(10) a:hover{
+    background-color: rgb(78, 78, 246);
+    color:  white;
+}
+
+tbody>tr>td:nth-child(11) a{
+    border-color:rgb(244, 63, 63);
+    color: rgb(244, 67, 67);
+}
+
+
+tbody>tr>td:nth-child(11) a:hover{
+    background-color:rgb(196, 7, 7);
+    color: white;
+}
+
+.transfer-list>tbody>tr>td{
+    text-align: center;
+}
+
+
+

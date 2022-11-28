@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head :: head"/>
+    <title>City Management</title>
+    <link rel="stylesheet" href="/assets/css/customer.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>List of City</h1>
+            </div>
+            <div class="col-sm-7 ">
+                <a href="/provinces/create" class="btn btn-outline-light"><i class="fa-solid fa-folder-plus"
+                                                                             aria-hidden="true"></i> <span>Add New City</span></a>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>City</th>
+            <th>Country</th>
+            <th colspan="3">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="item : ${provinces}">
+            <tr>
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.country.name}"></td>
+
+                <td class="text-center">
+                    <a th:href="@{/provinces/info/__${item.id}__}" class="btn btn-outline-success" title="formation" data-toggle="tooltip">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a th:href="@{/provinces/edit/__${item.id}__}" class="btn btn-outline-secondary" title="Edit" data-toggle="tooltip">
+                        <i class="fa-regular fa-pen-to-square " aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a th:href="@{/provinces/suspend/__${item.id}__}" class="btn btn-outline-warning" title="Suspended" data-toggle="tooltip">
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+</div>
+
+
+<th:block  th:if="${message != null}">
+    <script type="text/javascript">
+        window.onload = () => {
+            showToast();
+        }
+    </script>
+</th:block>
+<div class="col d-flex justify-content-center">
+    <div class="toast" id="myToast" style="position: absolute; top: 40px;background-color: white ">
+        <div class="toast-header">
+            <strong class="me-auto" style="font-size: large;">
+                <i class="fa-solid fa-bell fa-2x" style="color:rgb(7, 147, 7);"></i>
+                Thông báo!
+            </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" style="font-size: large;" th:text="${message}"></div>
+    </div>
+</div>
+
+<footer>
+    <div id="message-alert">
+        <th:block th:if="${error}">
+            <div class="alert-danger">
+                <label class="error" th:text="${error}"></label>
+            </div>
+        </th:block>
+
+    </div>
+</footer>
+
+
+<script>
+    let icons = document.querySelectorAll('[data-toggle="tooltip"]');
+    icons.forEach((icon) => {
+        new bootstrap.Tooltip(icon);
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

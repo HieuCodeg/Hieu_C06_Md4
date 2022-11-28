@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head :: head"/>
+    <title>Transfer Money</title>
+    <link rel="stylesheet" href="/assets/css/deposit.css">
+</head>
+<body>
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h2>Withdraw money from the customer's account</h2>
+            </div>
+            <div class="col-sm-7">
+                <a href="/customers" class="btn btn-outline-light"><i class="fa fa-list"></i>Customer list</a>
+            </div>
+        </div>
+    </div>
+    <form method="post"  th:object="${transfer}">
+        <div class="form-edit">
+            <div class="row col-3">
+                <div class="col-ms-3">
+                    <p>Sender ID</p>
+                    <input class="form-control" type="number" th:field="${sender.id}" readonly>
+                </div>
+                <div class="col-ms-3">
+                    <p>Recipient Name</p>
+                    <select th:field="*{recipient}" class="form-control">
+                        <th:block th:each="item : ${recipients}">
+                            <option th:value="${item.id}" th:text="${'[' +item.id + '] ' + item.fullName}"></option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <div class="row col-3">
+                <div class="col-ms-3">
+                    <p>Sender Name</p>
+                    <input class="form-control" type="text" th:field="${sender.fullName}" readonly>
+                </div>
+                <div class="col-ms-3">
+                    <p>Transaction Amount ($)</p>
+                    <input class="form-control" type="number" id="transferAmount" th:field="*{transferAmount}" onchange="countMoney()">
+                    <div>
+                        <label class="error" th:if="${#fields.hasErrors('transferAmount')}" th:errors="*{transferAmount}"></label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row col-3">
+                <div class="col-ms-3">
+                    <p>Email</p>
+                    <input class="form-control" type="text" th:field="${sender.email}" readonly>
+                </div>
+                <div class="col-ms-3">
+                    <p>Fees (%)</p>
+                    <input class="form-control" id="fees" type="number" th:field="*{fees}" readonly>
+                </div>
+            </div>
+            <div class="row col-3">
+                <div class="col-ms-3">
+                    <p>Sender balance</p>
+                    <input class="form-control" type="number" th:field="${sender.balance}" readonly>
+                </div>
+                <div class="col-ms-3">
+                    <p>Total amount of transaction ($)</p>
+                    <input class="form-control" type="text" id="transactionAmount" th:field="*{transactionAmount}" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="btn-transfer-money">
+            <button class="btn btn-outline-primary" type="text"><i class="fa fa-exchange"></i> Transfer</button>
+        </div>
+    </form>
+</div>
+
+</div>
+<footer>
+    <div id="message-alert">
+        <th:block th:if="${error}">
+            <div class="alert-danger">
+                <label class="error" th:text="${error}"></label>
+            </div>
+        </th:block>
+
+    </div>
+</footer>
+<script>
+    function countMoney(){
+        let transferAmount = document.getElementById("transferAmount").value;
+        let fees;
+        if (transferAmount < 100000) {
+            fees = 5;
+        } else if(transferAmount < 500000) {
+            fees = 8;
+        } else {
+            fees = 10;
+        }
+        document.getElementById("fees").value = fees;
+        let feesAmount = transferAmount * fees /100;
+        let transactionAmount = Number(transferAmount)  + feesAmount;
+        document.getElementById("transactionAmount").value = transactionAmount;
+    }
+</script>
+</body>
+</html>

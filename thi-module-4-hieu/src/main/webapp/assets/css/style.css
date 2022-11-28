@@ -1,0 +1,145 @@
+#message-alert {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+}
+.alert-danger {
+    padding: 1rem 135px;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+label.error {
+    display: list-item;
+    margin-top: 5px;
+    color: #842029;
+}
+
+.btn-withdraw {
+    margin-top: 20px;
+}
+.btn-withdraw button:hover {
+    background-color: orange;
+    color: white;
+}
+.btn-transfer-money {
+    margin-top: 20px;
+}
+.btn-transfer-money button:hover {
+    background-color: rgb(66, 66, 235);
+    color: white;
+}
+.btn-withdraw {
+    margin-top: 20px;
+}
+.btn-withdraw button:hover {
+    background-color: orange;
+    color: white;
+}
+
+/*model xan nhan*/
+.btnModel {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    transition: transform .6s;
+}
+
+.btnModel:hover {
+    opacity: 1;
+    -ms-transform: scale(1.05); /* IE 9 */
+    -webkit-transform: scale(1.05); /* Safari 3-8 */
+    transform: scale(1.05);
+
+
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn,
+.deletebtn,
+.confirmbtn {
+    float: left;
+    width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+    background-color: #ccc;
+    color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+    background-color: #f44336;
+}
+
+.confirmbtn {
+    background-color: #04AA6D;
+}
+
+/* Add padding and center-align text to the container */
+.containerCon {
+    padding: 10px;
+    text-align: center;
+    background-color: #f1f1f1;
+    width: 800px;
+    /*height: 200px;*/
+    margin: auto;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
+}
+.rowInLine {
+    justify-content: center;
+    width: 100%;
+    margin: 0 10px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(168, 169, 172, 0.4);
+    padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+

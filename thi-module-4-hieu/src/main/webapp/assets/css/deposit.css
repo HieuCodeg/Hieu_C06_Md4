@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0 auto;
+}
+
+.form-edit {
+    display: flex;
+    justify-content: space-between;
+}
+.table-title {
+    background-color: rgb(84, 84, 229);
+    color: white;
+    padding: 16px 30px;
+    border-radius: 3px 3px 0 0;
+}
+.table-title  .btn {
+    float: right;
+    outline: none;
+    min-width: 50px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 50px;
+}
+.table-title  .btn:hover {
+    background-color: aqua;
+}
+.row p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+.btn-deposit {
+    margin-top: 20px;
+}
+.btn-deposit button:hover {
+    background-color: green;
+    color: white;
+}
+

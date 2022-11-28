@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+.form-create {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-title {
+    background: #299be4;
+    color: #fff;
+    padding: 16px 30px;
+    border-radius: 3px 3px 0 0;
+}
+
+.table-title .btn {
+    float: right;
+    min-width: 50px;
+    outline: none !important;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.table-title .btn:hover {
+    background-color: rgb(79, 215, 243);
+}
+
+.row p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn-action button {
+    margin-top: 20px;
+}
+

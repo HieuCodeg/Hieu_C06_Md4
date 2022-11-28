@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head :: head"/>
+    <title>Information Province</title>
+    <link rel="stylesheet" href="/assets/css/create.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>Information City</h1>
+            </div>
+            <div class="col-sm-7 btn-a">
+                <a class="btn btn-outline-light" href="/provinces"><i class="fa fa-list"></i> List of City
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <form th:object="${province}">
+        <div class="form-create">
+            <div class="col-lg-12 fl">
+                <div class="row col-lg-12 mt-3">
+                    <div class="col-lg-6">
+                        <p>Name</p>
+                        <input class="form-control" type="text" th:field="*{name}" disabled>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Country</p>
+                        <input class="form-control" type="text" th:field="*{country.name}" disabled>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <p>Area</p>
+                        <input class="form-control" type="number" th:field="*{area}" disabled>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Population</p>
+                        <input class="form-control" type="number" th:field="*{population}" disabled>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>GDP</p>
+                        <input class="form-control" type="number" th:field="*{GDP}" disabled>
+                    </div>
+                    <div class="col-lg-8">
+                        <p>Description</p>
+                        <input class="form-control" type="text" th:field="*{description}" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a th:href="@{/provinces/edit/__${id}__}" class="btn btn-outline-secondary" title="Edit" data-toggle="tooltip">
+            <i class="fa-regular fa-pen-to-square " aria-hidden="true"></i>
+        </a>
+        <a th:href="@{/provinces/suspend/__${id}__}" class="btn btn-outline-warning" title="Suspended" data-toggle="tooltip">
+            <i class="fa fa-ban" aria-hidden="true"></i>
+        </a>
+    </form>
+
+</div>
+<footer>
+    <div id="message-alert">
+        <th:block th:if="${error}">
+            <div class="alert-danger">
+                <label class="error" th:text="${error}"></label>
+            </div>
+        </th:block>
+
+    </div>
+</footer>
+</body>
+</html>

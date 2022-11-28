@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head :: head"/>
+    <title>Edit City</title>
+    <link rel="stylesheet" href="/assets/css/create.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>Edit City</h1>
+            </div>
+            <div class="col-sm-7 btn-a">
+                <a class="btn btn-outline-light" href="/provinces"><i class="fa fa-list"></i> List of City
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" th:object="${province}">
+        <div class="form-create">
+            <div class="col-lg-12 fl">
+                <div class="row col-lg-12 mt-3">
+                    <div class="col-lg-6">
+                        <p>Name</p>
+                        <input class="form-control" type="text" th:field="*{name}">
+                        <div>
+                            <label class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Country</p>
+                        <select th:field="*{country}" class="form-control">
+                            <th:block th:each="item : ${countries}">
+                                <option th:value="${item.id}" th:text="${'[' +item.id + '] ' + item.name}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <p>Area</p>
+                        <input class="form-control" type="number" th:field="*{area}">
+                        <div>
+                            <label class="error" th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Population</p>
+                        <input class="form-control" type="number" th:field="*{population}">
+                        <div>
+                            <label class="error" th:if="${#fields.hasErrors('population')}" th:errors="*{population}"></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>GDP</p>
+                        <input class="form-control" type="number" th:field="*{GDP}">
+                        <div>
+                            <label class="error" th:if="${#fields.hasErrors('GDP')}" th:errors="*{GDP}"></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <p>Description</p>
+                        <input class="form-control" type="text" th:field="*{description}">
+                        <div>
+                            <label class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-action">
+            <button class="btn btn-outline-primary" type="text">
+                <i class="fa-solid fa-plus"></i> Save Province
+            </button>
+
+            <button class="btn btn-outline-danger" type="button">
+                <a  href="/provinces"><i class="fa fa-close"></i> Thoát
+                </a>
+            </button>
+        </div>
+    </form>
+
+</div>
+<footer>
+    <div id="message-alert">
+        <th:block th:if="${error}">
+            <div class="alert-danger">
+                <label class="error" th:text="${error}"></label>
+            </div>
+        </th:block>
+
+    </div>
+</footer>
+</body>
+</html>

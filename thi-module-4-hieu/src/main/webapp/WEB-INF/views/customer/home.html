@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="/layout/head :: head"/>
+    <title>Customer Management</title>
+    <link rel="stylesheet" href="/assets/css/customer.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>List of customers</h1>
+            </div>
+            <div class="col-sm-7 ">
+                <a href="/customers/create" class="btn btn-outline-light"><i class="fa-solid fa-folder-plus"
+                                                                             aria-hidden="true"></i> <span>Add New Customer</span></a>
+                <a href="/customers/information" class="btn btn-outline-light"><i class="fa fa-history"
+                    aria-hidden="true"></i> <span>Transfer money Information</span></a>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>FullName</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Balance</th>
+            <th colspan="5">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="item : ${customers}">
+            <tr>
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.fullName}"></td>
+                <td th:text="${item.email}"></td>
+                <td class="text-center" th:text="${item.phone}"></td>
+                <td th:text="${item.address}"></td>
+                <td class="text-end num-space" th:text="${item.balance}"></td>
+                <td class="text-center">
+                    <a th:href="@{/customers/edit/__${item.id}__}" class="btn btn-outline-secondary" title="Edit" data-toggle="tooltip">
+                        <i class="fa-regular fa-pen-to-square " aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a th:href="@{/customers/deposit/__${item.id}__}" class="btn btn-outline-success" title="Deposit" data-toggle="tooltip">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a th:href="@{/customers/withdraw/__${item.id}__}" class="btn btn-outline-success" title="Withdraw" data-toggle="tooltip">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a th:href="@{/customers/transfer/__${item.id}__}" class="btn btn-outline-success" title="Transfer" data-toggle="tooltip">
+                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a th:href="@{/customers/suspend/__${item.id}__}" class="btn btn-outline-warning" title="Suspended" data-toggle="tooltip">
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+                    </a>
+<!--                    <a class="btn btn-outline-warning" title="Suspended" data-toggle="tooltip"-->
+<!--                       onclick="showModal()">-->
+<!--                        <i class="fa fa-ban" aria-hidden="true"></i>-->
+<!--                    </a>-->
+
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+</div>
+
+<!--                   model xac nhan-->
+<!--<div id="id01" class="modal">-->
+<!--    <div class="containerCon">-->
+<!--        <h1>Bạn có chắc chắn muốn xóa?</h1>-->
+<!--        <div class="content">-->
+<!--            <div class="rowInLine">-->
+<!--                <div class="col">-->
+<!--                    <label for="fullName">Full Name</label>-->
+<!--                    <input  id="fullName" class="form-control" type="text" name="fullName" th:value="${item.fullName}" readonly>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <label for="phone">Phone</label>-->
+<!--                    <input id="phone" class="form-control" type="text" name="phone" th:value="${item.phone}" readonly>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="rowInLine">-->
+<!--                <div class="col">-->
+<!--                    <label for="email">Email</label>-->
+<!--                    <input id="email" class="form-control" type="text" name="email" th:value="${item.email}" readonly>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <label for="address">Address</label>-->
+<!--                    <input id="address" class="form-control" type="text" name="address" th:value="${item.address}" readonly>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="clearfix">-->
+<!--            <button type="button" onclick="document.getElementById('id01').style.display='none'"-->
+<!--                    class="cancelbtn btnModel">Hủy bỏ</button>-->
+<!--            <a th:href="@{/customers/suspend/__${item.id}__}">-->
+<!--                <button type="button" onclick="document.getElementById('id01').style.display='none'"-->
+<!--                        class="deletebtn btnModel">Chấp nhận</button>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<th:block  th:if="${message != null}">
+    <script type="text/javascript">
+        window.onload = () => {
+            showToast();
+        }
+    </script>
+</th:block>
+<div class="col d-flex justify-content-center">
+    <div class="toast" id="myToast" style="position: absolute; top: 40px;background-color: white ">
+        <div class="toast-header">
+            <strong class="me-auto" style="font-size: large;">
+                <i class="fa-solid fa-bell fa-2x" style="color:rgb(7, 147, 7);"></i>
+                Thông báo!
+            </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" style="font-size: large;" th:text="${message}"></div>
+    </div>
+</div>
+
+<footer>
+    <div id="message-alert">
+        <th:block th:if="${error}">
+            <div class="alert-danger">
+                <label class="error" th:text="${error}"></label>
+            </div>
+        </th:block>
+
+    </div>
+</footer>
+
+
+<script>
+    let icons = document.querySelectorAll('[data-toggle="tooltip"]');
+    icons.forEach((icon) => {
+        new bootstrap.Tooltip(icon);
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
